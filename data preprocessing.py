@@ -18,7 +18,8 @@ y = dataset.iloc[:,3].values                                  #dependent variabl
 
 #impute numerical values of the independent variables(missing value treatment)
 from sklearn.impute import SimpleImputer
-imputer = SimpleImputer()
+imputer = SimpleImputer(missing_values=np.nan,strategy="mean")
+// I THINK IT WILL BE GOOD IF WE MENTION THE STRATERGY WE ARE USING TO TAKE CARE OF MISSING DATA 
 imputer = imputer.fit(x[:,1:3])
 x[:,1:3] = imputer.transform(x[:,1:3])
 
