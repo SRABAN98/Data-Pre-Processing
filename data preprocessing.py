@@ -45,11 +45,21 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 x = sc.fit_transform(x)
 
-
-
 #split the data into training and testing phase(train and test data)
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.20, random_state = 0)
+
+//ACTUALLY WE NEED TO APPLY FEATURE SCALING AFTER WE SPLIT THE DATA INTO TRAIN AND TEST SET 
+//IF WE DO BEFORE SPLITTING OUR TEST DATA WILL BE LEAKED TO THE MODEL WE ARE TRAINING 
+// THE TEST SET SHOULD BE BRAND NEW 
+
+#scale the data(feature scalling)
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+x_train[:,3:]=sc.fit_transform(x_train[:,3:])
+x_test[:,3:]=sc.transform(x_test[:,3:])
+print(x_train)
+print(x_test)
 
 
 
